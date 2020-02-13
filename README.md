@@ -1,40 +1,41 @@
-# Project Title
+# Inventory Management System
 
-One Paragraph of project description goes here
+Created a Inventory Management System which is able to create, read, update and delete information which is inputed within the system. We created a MySQL database that synced with Java Eclipse which allowed the database to be retrieved from MySQL
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Firstly create a sql instance on google cloud. .Then pull the code to your eclipse using gitbash. Change the ip addresses of the MySQL database within java to there own databases ip
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Eclipse
+MySQL
+Google Cloud Platform
+GitBash
+Java
+Maven
 
 ```
 Give examples
 ```
 
 ### Installing
+1. Set up a google cloud instance
 
-A step by step series of examples that tell you how to get a development env running
+2. Pull the repository from GitHub using the following commands using GitBash: 
+git init 
+git pull https://github.com/Ezechib/Inventory_maven.git
 
-Say what the step will be
+3. Open repository into your IDE (Eclipse recommended)
 
-```
-Give the example
-```
+4. Change all databases connections ip within the code to there own databases ip. This are located within there classes ims and all daoMysql
 
-And repeat
+5. Run the application by pressing ctrl and f11 simultaneously. This will then prompt you to input your username and password to your own MySql database. The list of table names will then be presented and once a table is selected a series of commands will be displayed which allow for the table to be modified.
+The create function allows for a new item to be saved into the database. The read function shows all the items present in the database. For example read will pull all the information from the database table and input it into the console. The update function allows a item already in the database to be changed and the delete function removes a item from the database
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+Right click the test class in Java and run it in Junit.  This will return wether the code works or not by showing pass or not pass
 
 ### Unit Tests 
 
@@ -44,24 +45,6 @@ Explain what these tests test, why and how to run them
 Give an example
 ```
 
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -74,15 +57,17 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Blake Ezechi** - *Main body of work* - [Ezechib](https://github.com/Ezechib/Inventory_maven)
 
 ## License
-
-This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
-
-*For help in [Choosing a license](https://choosealicense.com/)*
+This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details
+ * Apache License, Version 2.0
+   ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+ * MIT license
+   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Nathan Farnell
+* Juamal 
+* Tapiwa
