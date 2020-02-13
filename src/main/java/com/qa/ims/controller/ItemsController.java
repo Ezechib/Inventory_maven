@@ -119,5 +119,7 @@ public class ItemsController implements CrudController<Items> {
 		Long id = Long.valueOf(getInput());
 
 		ItemsService.delete(id);
+		
+		LOGGER.info("Item Deleted");
 	}
 }
