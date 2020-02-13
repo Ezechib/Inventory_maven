@@ -10,9 +10,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.domain.Items;
 
-public class ItemDaoMysql implements Dao<Customer> {
+public class ItemDaoMysql implements Dao<Items>{
 
 	public static final Logger LOGGER = Logger.getLogger(ItemDaoMysql.class);
 
@@ -30,71 +30,104 @@ public class ItemDaoMysql implements Dao<Customer> {
 		this.jdbcConnectionUrl = jdbcConnectionUrl;
 		this.username = username;
 		this.password = password;
-	}
 
-	Customer customerFromResultSet(ResultSet resultSet) throws SQLException {
+	}	
+
+	Items itemFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
-		String firstname = resultSet.getString("firstname");
-		String lastname = resultSet.getString("lastname");
-		return new Customer(id, firstname, lastname);
+		String item_name = resultSet.getString("item_name");
+		Double item_value = resultSet.getDouble("item_value");
+		return new Items(id,item_name, item_value);
 	}
 
 	/**
-	 * Reads all customers from the database
-	 * 
-	 * @return A list of customers
+	 * Reads all the items from the database
+	 *
+	 * The function (@return) retrieves the list of items and their value from the database
 	 */
+
+
+
+
+
 	@Override
-	public List<Customer> readAll() {
-		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from Customers");) {
-			ArrayList<Customer> customers = new ArrayList<>();
-			while (resultSet.next()) {
-				customers.add(customerFromResultSet(resultSet));
-			}
-			return customers;
-		} catch (SQLException e) {
-			LOGGER.debug(e.getStackTrace());
-			LOGGER.error(e.getMessage());
+	public List<Items> readAll() {
+
+
+
+	try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+	    Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery("select * from Items");) {
+
+		ArrayList<Items>item = new ArrayList<>();
+		while (resultSet.next()) {
+			item.add(itemFromResultSet(resultSet));
 		}
-		return new ArrayList<>();
+		return item;
+	} catch (SQLException e) {
+		LOGGER.debug(e.getStackTrace());
+		LOGGER.error(e.getMessage());
 	}
+	return new ArrayList<>();
+
+}	
+
 
 
 	/**
-	 * Creates a customer in the database
-	 * 
-	 * @param customer - takes in a customer object. id will be ignored
+	 * Creates an item in the database
+	 *
+	 * @param item - takes in a item object. id will be ignored
 	 */
-	@Override
-	public Customer create(Customer customer) {
+	@Override	
+
+	public Items create(Items item) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into Customers(firstname, lastname) values('" + customer.getFirstName()
-					+ "','" + customer.getSurname() + "')");
-
+			statement.executeUpdate("insert into Items(item_name, item_value) values('" + item.getItem_name()
+					+ "','" + item.getItem_value() + "')");
+			
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
 		return null;
+	}	
+
+
+
+
+
+	public Items readItems(Long id) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT FROM Items where id = " + id);) {
+			resultSet.next();
+			return itemFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+
 	}
 
 	/**
 	 * Updates a customer in the database
-	 * 
+	 *
 	 * @param customer - takes in a customer object, the id field will be used to
 	 *                 update that customer in the database
 	 * @return
 	 */
+
 	@Override
-	public Customer update(Customer customer) {
+
+	public Items update(Items item) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update Customers set firstname ='" + customer.getFirstName() + "', lastname ='"
-					+ customer.getSurname() + "' where id =" + customer.getId());
-
+			statement.executeUpdate("update Items set item_name ='" + item.getItem_name() + "', item_value ='"
+					+ item.getItem_value()+ "' where id =" + item.getId());
+			return readItems(item.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -104,18 +137,30 @@ public class ItemDaoMysql implements Dao<Customer> {
 
 	/**
 	 * Deletes a customer in the database
-	 * 
+	 *
 	 * @param id - id of the customer
 	 */
+
+
+
 	@Override
+
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("delete from Customers where id = " + id);
+			statement.executeUpdate("delete from Items where id = " + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
 	}
 
-}
+
+
+
+
+
+
+
+
+	}

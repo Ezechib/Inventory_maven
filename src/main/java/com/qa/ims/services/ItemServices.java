@@ -3,30 +3,31 @@ package com.qa.ims.services;
 import java.util.List;
 
 import com.qa.ims.persistence.dao.Dao;
-import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.domain.Items;
 
-public class ItemServices implements CrudServices<Customer> {
+public class ItemServices implements CrudServices<Items> {
 
-	private Dao<Customer> customerDao;
-	
-	public ItemServices(Dao<Customer> customerDao) {
-		this.customerDao = customerDao;
-	}
-	
-	public List<Customer> readAll() {
-		return customerDao.readAll();
+	private Dao<Items> itemDao;
+
+	public ItemServices(Dao<Items> itemDao) {
+		this.itemDao = itemDao;
 	}
 
-	public Customer create(Customer customer) {
-		return customerDao.create(customer);
+	public List<Items> readAll() {
+		return itemDao.readAll();
+	}
+@Override
+	public Items create(Items item) {
+		return itemDao.create(item);
 	}
 
-	public Customer update(Customer customer) {
-		return customerDao.update(customer);
+	public Items update(Items item) {
+		return itemDao.update(item);
 	}
 
 	public void delete(Long id) {
-		customerDao.delete(id);
+		itemDao.delete(id);
 	}
 
 }
+ //could also be items
