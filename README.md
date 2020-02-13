@@ -7,16 +7,19 @@ Firstly create a sql instance on google cloud. .Then pull the code to your eclip
 
 ### Prerequisites
 
-Eclipse
-MySQL
-Google Cloud Platform
-GitBash
-Java
-Maven
+Eclipse: https://www3.ntu.edu.sg/home/ehchua/programming/howto/EclipseJava_HowTo.html
 
-```
-Give examples
-```
+MySQL: https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/windows-install-archive.html
+
+Google Cloud Platform: https://cloud.google.com/sql/docs/mysql/quickstart
+
+GitBash: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+Java: https://www3.ntu.edu.sg/home/ehchua/programming/howto/EclipseJava_HowTo.html
+
+Maven: https://howtodoinjava.com/maven/how-to-install-maven-on-windows/
+
+
 
 ### Installing
 1. Set up a google cloud instance
@@ -41,9 +44,6 @@ Right click the test class in Java and run it in Junit.  This will return wether
 
 Explain what these tests test, why and how to run them
 
-```
-Give an example
-```
 
 
 ## Built With
